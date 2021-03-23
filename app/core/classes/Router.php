@@ -3,6 +3,7 @@
 namespace App\Core\Classes;
 use App\Core\Classes\Request;
 use App\Classes\Controllers\MainController;
+use App\Classes\Controllers\Controller;
 
 class Router {
 
@@ -12,7 +13,7 @@ class Router {
     public function __construct()
     {
         $this->request = new Request();
-        // $this->run();
+        $this->controller = new Controller();
     }
 
     public static function get($path, $controller)
@@ -30,6 +31,10 @@ class Router {
         {
             $path = $this->request->getPath();
             $action = self::$routing['GET'][$path];
+            if(!$action)
+            {
+                return $this->controller->view('404');
+            }
             $action = $this->getAction($action);
             $class = $action[0];
             $method = $action[1];
