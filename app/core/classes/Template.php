@@ -6,22 +6,11 @@ class Template {
 
     protected function getContent($template, $layout = 'main')
     {
-        ob_start();
-        $content = "C:\\xampp\htdocs\E-RecodingAPI" . "/views/$template". '.view.php';
-        $main = "C:\\xampp\htdocs\E-RecodingAPI" . "/views/layouts/$layout". '.view.php';
+        $content = file_get_contents($_ENV['ROOT_DIR'] . "/views/$template". '.view.php');
+        $main = file_get_contents($_ENV['ROOT_DIR'] . "/views/layouts/$layout". '.view.php');
 
-        // var_dump($buffer);
-        // exit;
-        // $content = require_once $content;
-        // $main = require_once $main;
-        $buffer = ob_get_contents();
-        echo $buffer;
-
-        $cont = \str_replace('@content', $content, $main);
-        // require_once $main;
-
-        // ob_end_clean();
-        exit;
+        $data = \str_replace('@content', $content, $main);
+        echo $data;
     }
 
     public function show($template)
