@@ -18,11 +18,7 @@ class Router {
 
     public static function get($path, $controller)
     {
-        self::$routing = [
-            'GET' => [
-                $path => $controller,
-            ],   
-        ];
+        self::$routing['GET'][$path] = $controller;
     }
 
     public function run()
