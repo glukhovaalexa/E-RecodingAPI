@@ -14,9 +14,6 @@ class Controller {
 
     public function view($template)
     {
-        // return 1;
-        // var_dump($template);
-        // exit;
         return self::$template->show($template);
     }
 }
