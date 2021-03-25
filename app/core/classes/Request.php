@@ -33,4 +33,9 @@ class Request {
         return false;
     }
 
+    public function input()
+    {
+        return $_POST;
+    }
+
 }
