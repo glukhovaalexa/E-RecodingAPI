@@ -3,7 +3,8 @@
 namespace App\Classes\Controllers;
 use App\Classes\Controllers\Controller;
 use App\Core\Classes\DB\Db;
- 
+use App\Classes\Models\User;
+
 class RegisterController extends Controller {
 
     public function index()
@@ -14,8 +15,9 @@ class RegisterController extends Controller {
     public function signup()
     {
         var_dump($this->request->input());
-        $obj = new Db;
-        var_dump($obj->dbh);
+        echo '<pre>';
+        var_dump(User::getAll('users'));
+        
 
     }
 }
