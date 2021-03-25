@@ -18,9 +18,9 @@
             <div>
                 <h3 class="float-md-start mb-0">E-Recoding</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
-                    <a class="nav-link active" aria-current="page" href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                     <a class="nav-link" href="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?action=\signin') ?>">Signin</a>
-                    <a class="nav-link" href="#">Signup</a>
+                    <a class="nav-link" href="/signup">Signup</a>
                 </nav>
             </div>
         </header>
