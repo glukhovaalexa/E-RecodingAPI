@@ -21,6 +21,11 @@ class Router {
         self::$routing['GET'][$path] = $controller;
     }
 
+    public static function post($path, $controller)
+    {
+        self::$routing['POST'][$path] = $controller;
+    }
+
     public function run()
     {
         if($this->request->getMethod())
@@ -31,10 +36,19 @@ class Router {
             {
                 return $this->controller->view('404');
             }
-            $action = $this->getAction($action);
-            $class = $action[0];
-            $method = $action[1];
         }
+        if($this->request->postMethod())
+        {
+            $path = $this->request->getPath();
+            $action = self::$routing['POST'][$path];
+            if(!$action)
+            {
+                return $this->controller->view('404');
+            }
+        }
+        $action = $this->getAction($action);
+        $class = $action[0];
+        $method = $action[1];
 
         return call_user_func([new $class, $method]);
     }
