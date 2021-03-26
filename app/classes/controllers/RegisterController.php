@@ -14,10 +14,8 @@ class RegisterController extends Controller {
 
     public function signup()
     {
-        var_dump($this->request->input());
-        echo '<pre>';
-        var_dump(User::getAll('users'));
-        
-
+        $data = $this->request->input();
+        User::insert('users', $data);
+        echo 'profile';
     }
 }
