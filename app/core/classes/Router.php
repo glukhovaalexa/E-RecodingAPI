@@ -16,16 +16,25 @@ class Router {
         $this->controller = new Controller();
     }
 
+    /**
+     * add to array path and action
+     */
     public static function get($path, $controller)
     {
         self::$routing['GET'][$path] = $controller;
     }
 
+    /**
+     * add to array path and action
+     */
     public static function post($path, $controller)
     {
         self::$routing['POST'][$path] = $controller;
     }
 
+    /**
+     * connect action
+     */
     public function run()
     {
         if($this->request->getMethod())
@@ -53,6 +62,9 @@ class Router {
         return call_user_func([new $class, $method]);
     }
 
+    /**
+     * get action
+     */
     public function getAction($action)
     {
         $action = explode('@', $action);

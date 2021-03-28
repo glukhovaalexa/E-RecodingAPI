@@ -5,6 +5,9 @@ use App\Core\Classes\DB\Db;
 
 class Model extends Db{
 
+    /**
+     * get all rows from table
+     */
     public static function getAll($table)
     {
         $db = new Db;
@@ -16,41 +19,22 @@ class Model extends Db{
         return $result;
     }
 
+    /**
+     * insert into table
+     */
     public static function insert($table, $data)
     {
         $db = new Db;
-        // $sql = "INSERT INTO users (name, lastname, city, phone, email, pass, pass_rep) 
-        //          VALUES (:name, :lastname, :city, :phone, :email, :pass, :pass_rep)";
-        // $stmt = $db->dbh->prepare($sql);
-        // $array = [];
-        // foreach($data as $key => $value)
-        // {
-        //     $array[] = $value;
-        // }
-        // list($name, $lastname, $city, $phone, $email, $pass, $pass_rep) = $array;
-        // $susccess = $stmt->execute([':name' => $name, ':lastname' => $lastname, ':city' => $city, ':phone' => $phone, ':email' => $email, 
-        //     ':pass' => $pass, ':pass_rep' => $pass_rep]);
-        // $stmt = null;
-        // $db->close();
-        // return $susccess;
         $params = \array_keys($data);
-        $sep = ':';
-        // // var_dump($params);
-        // //         exit;
-        // $b = array_walk($params, function($sep){
-        //     $array = [];
-        //     foreach($params as $value)
-        //     {
-        //         var_dump($value);
-        //         exit;
-        //     }
-        // });
+        $values = [];
+        foreach($params as $param)
+        {
+            $values[] = ':' . $param;
+        }
+        $params = implode(', ', $params);
+        $values = implode(', ', $values);
 
-        // var_dump($b);
-        //////!!!! попробовать замыкание !!!/////
-        $sql = "INSERT INTO $table ($params) 
-                VALUES (:name, :lastname, :city, :phone, :email, :pass, :pass_rep)";
-                exit;
+        $sql = "INSERT INTO $table ($params) VALUES ($values)";
         $stmt = $db->dbh->prepare($sql);
         foreach($data as $key => $value)
         {

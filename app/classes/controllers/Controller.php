@@ -15,6 +15,9 @@ class Controller {
         self::$template = new Template();
     }
 
+    /**
+     * connect template
+     */
     public function view($template)
     {
         return self::$template->show($template);

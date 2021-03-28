@@ -4,11 +4,17 @@ namespace App\Core\Classes;
 
 class Template {
 
+    /**
+     * connect template
+     */
     public function show($template)
     {
         $content = $this->getContent($template);
     }
 
+    /**
+     * get content
+     */
     protected function getContent($template)
     {
         $content = $this->getSection($template);
@@ -17,6 +23,9 @@ class Template {
         echo $data;
     }
 
+    /**
+     * get unique content
+     */
     protected function getSection($template)
     {
         ob_start();
@@ -26,6 +35,9 @@ class Template {
         return $out1;
     }
 
+    /**
+     *get layout
+     */
     protected function getLayout($layout = 'main')
     {
         ob_start();

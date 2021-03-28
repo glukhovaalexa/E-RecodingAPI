@@ -4,15 +4,18 @@ namespace App\Core\Classes;
 
 class Request {
 
-    public $path;
-    public $method;
-    public $params;
-
+    /**
+     * get path from url
+     */
     public function getPath()
     {
         return $_SERVER['REQUEST_URI'];
     }
 
+    /**
+     * show method
+     * return bool
+     */
     public function getMethod()
     {
         if($_SERVER['REQUEST_METHOD'] === 'GET')
@@ -23,6 +26,10 @@ class Request {
         return false;
     }
 
+    /**
+     * show method
+     * return bool
+     */
     public function postMethod()
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -33,6 +40,10 @@ class Request {
         return false;
     }
 
+    /**
+     * get data
+     * return array
+     */
     public function input()
     {
         return $_POST;
