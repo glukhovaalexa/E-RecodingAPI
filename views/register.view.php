@@ -1,7 +1,7 @@
 <div class="text-center">
     <main class="form-signin">
         <form action="\signup" method="POST">
-            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
             <label for="name" class="visually-hidden">Name</label>
             <input type="text" name="name" id="name" class="form-control" placeholder="Name" required autofocus>
             <label for="lastname" class="visually-hidden">lastname</label>
@@ -21,7 +21,7 @@
                     <input type="checkbox" value="remember-me"> Remember me
                 </label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
             <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
         </form>
     </main>
