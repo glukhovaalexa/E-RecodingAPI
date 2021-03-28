@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Classes\DB;
+namespace Api\Core\Classes\DB;
 
 class Db {
 

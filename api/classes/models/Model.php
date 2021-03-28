@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Classes\Models;
-use App\Core\Classes\DB\Db;
+namespace Api\Classes\Models;
+use Api\Core\Classes\DB\Db;
 
 class Model extends Db{
 
@@ -24,6 +24,7 @@ class Model extends Db{
      */
     public static function insert($table, $data)
     {
+        
         $db = new Db;
         $params = \array_keys($data);
         $values = [];
@@ -33,7 +34,6 @@ class Model extends Db{
         }
         $params = implode(', ', $params);
         $values = implode(', ', $values);
-
         $sql = "INSERT INTO $table ($params) VALUES ($values)";
         $stmt = $db->dbh->prepare($sql);
         foreach($data as $key => $value)

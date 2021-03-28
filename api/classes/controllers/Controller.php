@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Classes\Controllers;
-use App\Core\Classes\Request;
-use App\Core\Classes\Response;
+namespace Api\Classes\Controllers;
+use Api\Core\Classes\Request;
+use Api\Core\Classes\Response;
 
 class Controller {
 

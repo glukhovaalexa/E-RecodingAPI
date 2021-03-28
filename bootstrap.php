@@ -5,14 +5,15 @@ header('Access-Control-Allow-Headers: *, Authorization');
 header('Access-Control-Allow-Methods: *');
 header('Access-Control-Allow-Credentials: true');
 header('Content-Type: application/json');
+
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/app/routing.php';
+require_once __DIR__ . '/api/routing.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 
-use App\Core\Classes\Router;
+use Api\Core\Classes\Router;
 
 
 $router = new Router();

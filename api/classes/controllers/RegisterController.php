@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Classes\Controllers;
-use App\Classes\Controllers\Controller;
-use App\Core\Classes\DB\Db;
-use App\Classes\Models\User;
+namespace Api\Classes\Controllers;
+use Api\Classes\Controllers\Controller;
+use Api\Core\Classes\DB\Db;
+use Api\Classes\Models\User;
 
 class RegisterController extends Controller {
 

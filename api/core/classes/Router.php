@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Classes;
-use App\Core\Classes\Request;
-use App\Classes\Controllers\MainController;
-use App\Classes\Controllers\Controller;
+namespace Api\Core\Classes;
+use Api\Core\Classes\Request;
+use Api\Classes\Controllers\MainController;
+use Api\Classes\Controllers\Controller;
 
 class Router {
 
