@@ -6,12 +6,11 @@ use App\Classes\Controllers\Controller;
 class RegisterController extends Controller {
 
     /**
-     * get request
-     * show login page
+     * 
      */
     public function index()
     {
-        return $this->view('login');
+        //
     }
 
     /**

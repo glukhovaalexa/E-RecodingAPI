@@ -40,7 +40,23 @@ class Model extends Db{
         {
             $stmt->bindParam(":$key", $value);
         }
-        var_dump($stmt->execute());
-        exit;
+        if($stmt->execute())
+        {
+            return self::getLastInsert($table);
+        }
+
+        return false;
+
+    }
+
+    public static function getLastInsert($table)
+    {
+        $db = new Db;
+        $stmt = $db->dbh->prepare("SELECT * FROM $table ORDER BY id DESC LIMIT 1");
+        $stmt->execute();
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $stmt = null;
+        $db->close();
+        return $result;
     }
 }
