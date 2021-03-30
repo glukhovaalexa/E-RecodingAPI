@@ -3,11 +3,12 @@
 namespace Api\Core\Classes;
 use Api\Core\Classes\Validate;
 
-class Request {
+class Request{
 
     public $validate;
     public function __construct()
     {
+
         // $this->validate = new Validate($this->rules());
     }
     /**

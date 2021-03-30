@@ -5,15 +5,16 @@ use Api\Classes\Controllers\Controller;
 use Api\Core\Classes\DB\Db;
 use Api\Classes\Models\User;
 use Api\Core\Classes\Validate;
+use Api\Core\Classes\Request;
 use Api\Classes\Requests\RegisterRequest;
 
-class RegisterController extends Controller {
+class RegisterController extends Controller{
 
-    public $request;
-    public function __construct()
-    {
-        $this->request = new RegisterRequest();
-    }
+    // public $request;
+    // public function __construct()
+    // {
+    //     $this->request = new RegisterRequest();
+    // }
     /**
      * 
      */
@@ -26,12 +27,13 @@ class RegisterController extends Controller {
      * post request
      * handle sign up
      */
-    public function signup()
+    public function signup(Request $request)
     {
-        $data = $this->request->input();
-        var_dump($data);
+        var_dump($request);
         exit;
+        $data = $this->request->input();
         
+
         $result = User::insert('users', $data);
         if($result)
         {

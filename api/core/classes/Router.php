@@ -4,6 +4,7 @@ namespace Api\Core\Classes;
 use Api\Core\Classes\Request;
 use Api\Classes\Controllers\MainController;
 use Api\Classes\Controllers\Controller;
+use Api\Core\Interfaces\RequestInterface;
 
 class Router {
 
@@ -58,8 +59,7 @@ class Router {
         $action = $this->getAction($action);
         $class = $action[0];
         $method = $action[1];
-
-        return call_user_func([new $class, $method]);
+        return call_user_func([new $class, $method], $this->request);
     }
 
     /**

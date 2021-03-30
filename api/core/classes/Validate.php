@@ -13,7 +13,6 @@ class Validate {
 
     public function validate($rules, $request)
     {
-        // var_dump($rules, $request);
         foreach($rules as $attribute => $rule)
         {
             var_dump($attribute, $rule);
