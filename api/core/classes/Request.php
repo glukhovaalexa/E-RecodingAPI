@@ -1,9 +1,15 @@
 <?php
 
 namespace Api\Core\Classes;
+use Api\Core\Classes\Validate;
 
 class Request {
 
+    public $validate;
+    public function __construct()
+    {
+        // $this->validate = new Validate($this->rules());
+    }
     /**
      * get path from url
      */
@@ -47,6 +53,10 @@ class Request {
     public function input()
     {
         return $_POST;
+    }
+
+    public function rules()
+    {
     }
 
 }
