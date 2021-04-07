@@ -2,25 +2,27 @@
 
 namespace Api\Classes\Controllers;
 use Api\Classes\Controllers\Controller;
-use Api\Core\Classes\DB\Db;
 use Api\Classes\Models\User;
-use Api\Core\Classes\Validate;
 use Api\Core\Classes\Request;
 use Api\Classes\Requests\RegisterRequest;
 
 class RegisterController extends Controller{
 
     // public $request;
-    // public function __construct()
-    // {
-    //     $this->request = new RegisterRequest();
-    // }
+    public function __construct()
+    {
+        parent::__construct();
+        if($this->request->postMethod())
+        {
+            $this->request = new RegisterRequest();
+        }
+    }
     /**
      * 
      */
     public function index()
     {
-        //
+        echo 'hi';
     }
 
     /**
@@ -29,12 +31,16 @@ class RegisterController extends Controller{
      */
     public function signup(Request $request)
     {
-        var_dump($request);
-        exit;
-        $data = $this->request->input();
+        $erros = $this->request->validate->errors;
+        if(!empty($erros))
+        {
+            $response = $this->response->json($erros, 400);
+            echo $response;
+            return;
+        }
         
-
-        $result = User::insert('users', $data);
+        $data = $this->request->input();
+        $result = User::insert($data);
         if($result)
         {
             $response = $this->response->json($result, 201);
