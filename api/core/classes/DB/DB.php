@@ -5,7 +5,9 @@ namespace Api\Core\Classes\DB;
 class Db {
 
     public $dbh;
-    public function __construct()
+    private static $instance;
+
+    private function __construct()
     {
         try {
             $this->dbh = new \PDO("mysql:host=localhost;dbname={$_ENV['DB_NAME']}", $_ENV['DB_USER'], $_ENV['DB_PASS']);
@@ -14,6 +16,14 @@ class Db {
             print "Error!: " . $e->getMessage() . "<br/>";
             die();
         }
+    }
+
+    public static function getInstance(): self 
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
     }
 
     public function close()
