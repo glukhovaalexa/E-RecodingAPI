@@ -6,11 +6,12 @@ use Api\Core\Classes\Validate;
 class Request{
 
     public $validate;
-    public function __construct()
-    {
+    // public function __construct()
+    // {
 
-        // $this->validate = new Validate($this->rules());
-    }
+    //     // $this->validate = new Validate($this->rules());
+    // }
+
     /**
      * get path from url
      */
@@ -51,8 +52,12 @@ class Request{
      * get data
      * return array
      */
-    public function input()
+    public function input($attribute = '')
     {
+        if(!empty($attribute))
+        {
+            return $_POST[$attribute];
+        }
         return $_POST;
     }
 
