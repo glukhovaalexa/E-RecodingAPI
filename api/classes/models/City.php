@@ -6,8 +6,23 @@ class City extends Model{
     public int $id;
     public string $name;
 
-    public function hospitals()
+    /**
+     * relationship
+     * 
+     * return array
+     */
+    public function hospitals() : array
     {
         return $this->belongsToMany(Hospital::class, $this, 'city_id');
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'hospitals' => $this->hospitals()
+        ];
+
     }
 }
