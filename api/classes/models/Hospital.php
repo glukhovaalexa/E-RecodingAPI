@@ -7,8 +7,13 @@ class Hospital extends Model{
     public string $name;
     public int $city_id;
 
-    public function city($class)
+    /**
+     * relationship
+     * 
+     * return array
+     */
+    public function specialities() : array
     {
-        return $this->has($class, $this, 'city_id');
+        return $this->hasMany(Speciality::class, $this, 'hospital_id');
     }
 }
