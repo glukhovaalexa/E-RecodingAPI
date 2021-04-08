@@ -2,6 +2,8 @@
 
 namespace Api\Core\Classes;
 use Api\Core\Classes\Request;
+use Api\Core\Classes\Response;
+
 use Api\Classes\Controllers\MainController;
 use Api\Classes\Controllers\Controller;
 
@@ -13,6 +15,7 @@ class Router {
     public function __construct()
     {
         $this->request = new Request();
+        $this->response = new Response();
         $this->controller = new Controller();
     }
 
@@ -37,30 +40,48 @@ class Router {
      */
     public function run()
     {
+        $path = $this->request->getPath();
+        $params = $this->request->getParams();
+
+        if($params)
+        {
+            $position = strripos($params, '='); 
+            $key = mb_substr($params, 0, $position); 
+            $position2 = strripos($params, '/');
+            $key2 = ''; 
+            if($position2)
+            {
+                $key2 = mb_substr($params, $position2, strlen($params) - 1); 
+            }
+            $path = "$path/{{$key}}$key2";
+        }
+
         if($this->request->getMethod())
         {
-            $path = $this->request->getPath();
-            $action = self::$routing['GET'][$path];
-
-            if(!$action)
+            if(!array_key_exists($path, self::$routing['GET']))
             {
-                return $this->controller->view('404');
+                echo $this->response->json([
+                    'status' => false,
+                    'message' => 'Undefined route'
+                ], 404);
+                return;
             }
+            $action = self::$routing['GET'][$path];
         }
+
         if($this->request->postMethod())
         {
-            $path = $this->request->getPath();
             $action = self::$routing['POST'][$path];
             if(!$action)
             {
                 return $this->controller->view('404');
             }
         }
+
         $action = $this->getAction($action);
         $class = $action[0];
         $method = $action[1];
-        
-        return call_user_func([new $class, $method], $this->request);
+        return call_user_func([new $class, $method], $this->request, $this->request->input('id') ?? null);
     }
 
     /**
