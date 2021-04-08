@@ -8,15 +8,16 @@ use Api\Classes\Requests\RegisterRequest;
 
 class RegisterController extends Controller{
 
-    // public $request;
     public function __construct()
     {
         parent::__construct();
         if($this->request->postMethod())
         {
+            // request ruls for registration
             $this->request = new RegisterRequest();
         }
     }
+
     /**
      * 
      */
@@ -26,12 +27,14 @@ class RegisterController extends Controller{
     }
 
     /**
-     * post request
      * handle sign up
+     * 
+     * return json
      */
     public function signup(Request $request)
     {
         $erros = $this->request->validate->errors;
+        // if not path validateion
         if(!empty($erros))
         {
             $response = $this->response->json($erros, 400);
@@ -39,8 +42,9 @@ class RegisterController extends Controller{
             return;
         }
         
+        // if data is valid
         $data = $this->request->input();
-        $result = User::insert($data);
+        $result = User::create($data);
         if($result)
         {
             $response = $this->response->json($result, 201);
@@ -49,7 +53,7 @@ class RegisterController extends Controller{
             $response = $this->response->json([
                 'status' => false,
                 'message' => 'User wasn`t registed! Try later!'
-            ], 201);
+            ], 404);
             echo $response;
         }
     }
