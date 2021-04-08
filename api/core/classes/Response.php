@@ -6,6 +6,8 @@ class Response {
 
     /**
      * transform data into json
+     * 
+     * return json
      */
     public function json($data, $status)
     {
