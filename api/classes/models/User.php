@@ -12,8 +12,23 @@ class User extends Model{
     private string $pass;
     private string $pass_rep;
 
-    public function city()
+    /**
+     * relationship
+     * 
+     * return obj
+     */
+    public function city() : City
     {
         return $this->has(City::class, $this, 'city_id');
+    }
+
+    /**
+     * auth user
+     * 
+     * !!!!!!!
+     */
+    public static function Auth()
+    {
+        return 1;
     }
 }
