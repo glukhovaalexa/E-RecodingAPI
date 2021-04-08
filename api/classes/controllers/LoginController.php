@@ -30,26 +30,6 @@ class LoginController extends Controller {
      */
     public function signin(Request $request)
     {
-        // $erros = $this->request->validate->errors;
-        // if(!empty($erros))
-        // {
-        //     $response = $this->response->json($erros, 400);
-        //     echo $response;
-        //     return;
-        // }
-        
-        // $data = $this->request->input();
-        // $result = User::insert($data);
-        // if($result)
-        // {
-        //     $response = $this->response->json($result, 201);
-        //     echo $response;
-        // }else{
-        //     $response = $this->response->json([
-        //         'status' => false,
-        //         'message' => 'User wasn`t registed! Try later!'
-        //     ], 201);
-        //     echo $response;
-        // }
+        ///
     }
 }
