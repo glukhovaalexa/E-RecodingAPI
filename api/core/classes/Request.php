@@ -6,22 +6,39 @@ use Api\Core\Classes\Validate;
 class Request{
 
     public $validate;
-    // public function __construct()
-    // {
-
-    //     // $this->validate = new Validate($this->rules());
-    // }
 
     /**
      * get path from url
+     * 
+     * return string
      */
     public function getPath()
     {
-        return $_SERVER['REQUEST_URI'];
+        $path = $_SERVER['REQUEST_URI'];
+        
+        $params = $this->getParams();
+        $path = str_replace('?'.$params, '', $path);
+        return $path;
+    }
+
+    /**
+     * get params from url
+     * 
+     * return string
+     */
+    public function getParams()
+    {
+        $path = $_SERVER['REQUEST_URI'];
+        if(array_key_exists('query', parse_url($path)))
+        {
+            return parse_url($path)['query'];
+        }
+        return '';
     }
 
     /**
      * show method
+     * 
      * return bool
      */
     public function getMethod()
@@ -36,6 +53,7 @@ class Request{
 
     /**
      * show method
+     * 
      * return bool
      */
     public function postMethod()
@@ -50,15 +68,31 @@ class Request{
 
     /**
      * get data
+     * 
      * return array
      */
     public function input($attribute = '')
     {
-        if(!empty($attribute))
+        if($this->postMethod())
         {
-            return $_POST[$attribute];
+            if(!empty($attribute))
+            {
+                if(array_key_exists($attribute, $_POST))
+                {
+                    return $_POST[$attribute];
+                }
+            }
+            return $_POST;
         }
-        return $_POST;
+        if(!empty($attribute))
+            {
+                if(array_key_exists($attribute, $_GET))
+                {
+                    return $_GET[$attribute];
+                }
+            }
+        return $_GET;
+        
     }
 
     public function rules()
