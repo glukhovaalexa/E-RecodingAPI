@@ -18,6 +18,11 @@ class Db {
         }
     }
 
+    /**
+    * get instance
+    *
+    * return obj
+    */
     public static function getInstance(): self 
     {
         if (self::$instance === null) {
@@ -26,6 +31,11 @@ class Db {
         return self::$instance;
     }
 
+    /**
+    * close connection
+    *
+    * return
+    */
     public function close()
     {
         return $this->dbh = null;

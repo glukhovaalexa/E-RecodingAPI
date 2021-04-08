@@ -11,9 +11,15 @@ class RegisterRequest extends Request{
 
     public function __construct()
     {
+        //init Validate
         $this->validate = new Validate($this->rules(), $this);
     }
 
+    /**
+    * request ruls
+    *
+    * return array
+    */
     public function rules()
     {
         $parent = parent::rules();

@@ -21,7 +21,6 @@ class Validate {
             {
                 if(is_array($rule))
                 {
-                    // var_dump(mb_strlen($request->input($attribute)) > $rule[1]);
                     if($rule[0] === $request::MIN && mb_strlen($request->input($attribute)) < $rule[1])
                     {
                         $this->setError($attribute, $this->errors()[1]);
