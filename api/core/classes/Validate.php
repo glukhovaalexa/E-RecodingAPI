@@ -10,7 +10,7 @@ class Validate {
     public function __construct($rules, Request $request)
     {
         $this->request = $request;
-        $this->validate($rules, $request);
+        $this->validate($rules, $this->request);
     }
 
     public function validate($rules, $request)
