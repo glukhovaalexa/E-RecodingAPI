@@ -33,11 +33,11 @@ class RegisterController extends Controller{
      */
     public function signup(Request $request)
     {
-        $erros = $this->request->validate->errors;
+        $errors = $this->request->validate->errors;
         // if not path validateion
-        if(!empty($erros))
+        if(!empty($errors))
         {
-            $response = $this->response->json($erros, 400);
+            $response = $this->response->json($errors, 400);
             echo $response;
             return;
         }
