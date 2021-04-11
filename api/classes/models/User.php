@@ -4,13 +4,13 @@ namespace Api\Classes\Models;
 
 class User extends Model{
     public int $id;
-    private string $name;
-    private string $lastname;
+    public string $name;
+    public string $lastname;
     public int $city_id;
-    private string $phone;
-    private string $email;
-    private string $pass;
-    private string $pass_rep;
+    public string $phone;
+    public string $email;
+    public string $pass;
+    public string $pass_rep;
 
     /**
      * relationship
