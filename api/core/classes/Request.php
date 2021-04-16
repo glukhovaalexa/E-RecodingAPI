@@ -75,14 +75,15 @@ class Request{
     {
         if($this->postMethod())
         {
+            $post = json_decode(file_get_contents('php://input'), true);  
             if(!empty($attribute))
             {
-                if(array_key_exists($attribute, $_POST))
+                if(array_key_exists($attribute, $post))
                 {
-                    return $_POST[$attribute];
+                    return $post[$attribute];
                 }
             }
-            return $_POST;
+            return $post;
         }
         if(!empty($attribute))
             {
