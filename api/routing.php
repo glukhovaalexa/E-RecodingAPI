@@ -19,5 +19,5 @@ Router::get('/doctor/{id}', 'Api\Classes\Controllers\DoctorController@show');
 Router::get('/receptions', 'Api\Classes\Controllers\ReceptionController@index');
 Router::post('/reception', 'Api\Classes\Controllers\ReceptionController@store');
 Router::get('/reception/{id}', 'Api\Classes\Controllers\ReceptionController@show');
-Router::post('/reception/{id}/edit', 'Api\Classes\Controllers\ReceptionController@edit');
-Router::post('/reception/{id}/delete', 'Api\Classes\Controllers\ReceptionController@delete');
+Router::put('/reception/{id}', 'Api\Classes\Controllers\ReceptionController@edit');
+Router::delete('/reception/{id}', 'Api\Classes\Controllers\ReceptionController@delete');

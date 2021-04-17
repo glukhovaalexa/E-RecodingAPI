@@ -67,13 +67,43 @@ class Request{
     }
 
     /**
+     * show method
+     * 
+     * return bool
+     */
+    public function putMethod()
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'PUT')
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+        /**
+     * show method
+     * 
+     * return bool
+     */
+    public function deleteMethod()
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'DELETE')
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * get data
      * 
      * return array
      */
     public function input($attribute = '')
     {
-        if($this->postMethod())
+        if($this->postMethod() || $this->putMethod() || $this->deleteMethod())
         {
             $post = json_decode(file_get_contents('php://input'), true);  
             if(!empty($attribute))

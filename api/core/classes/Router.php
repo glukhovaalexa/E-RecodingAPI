@@ -36,6 +36,22 @@ class Router {
     }
 
     /**
+     * add to array path and action
+     */
+    public static function delete($path, $controller)
+    {
+        self::$routing['DELETE'][$path] = $controller;
+    }
+
+        /**
+     * add to array path and action
+     */
+    public static function put($path, $controller)
+    {
+        self::$routing['PUT'][$path] = $controller;
+    }
+
+    /**
      * connect action
      */
     public function run()
@@ -76,6 +92,32 @@ class Router {
             {
                 return $this->controller->view('404');
             }
+        }
+
+        if($this->request->putMethod())
+        {
+            if(!array_key_exists($path, self::$routing['PUT']))
+            {
+                echo $this->response->json([
+                    'status' => false,
+                    'message' => 'Undefined route'
+                ], 404);
+                return;
+            }
+            $action = self::$routing['PUT'][$path];
+        }
+
+        if($this->request->deleteMethod())
+        {
+            if(!array_key_exists($path, self::$routing['DELETE']))
+            {
+                echo $this->response->json([
+                    'status' => false,
+                    'message' => 'Undefined route'
+                ], 404);
+                return;
+            }
+            $action = self::$routing['DELETE'][$path];
         }
 
         $action = $this->getAction($action);
