@@ -14,10 +14,15 @@ class ReceptionController extends Controller {
      */
     public function index()
     {
-        $receptions = Reception::findMany(['user_id' => User::Auth()]);
+        $receptions = Reception::findMany(['user_id' => User::Auth()]); //array
         if($receptions)
         {
-            $response = $this->response->json($receptions, 201);
+            $result = [];
+            foreach($receptions as $reception)
+            {
+                $result[] = $reception->related();
+            }
+            $response = $this->response->json($result, 201);
             echo $response;
         }else{
             $response = $this->response->json([
@@ -35,10 +40,10 @@ class ReceptionController extends Controller {
      */
     public function show(Request $request, $id)
     {
-        $receptions = Reception::getOne($id);
-        if($receptions)
+        $reception = Reception::getOne($id);
+        if($reception)
         {
-            $response = $this->response->json($receptions, 201);
+            $response = $this->response->json($reception->related(), 201);
             echo $response;
         }else{
             $response = $this->response->json([
