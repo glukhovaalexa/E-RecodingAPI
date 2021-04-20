@@ -14,7 +14,7 @@ class ReceptionController extends Controller {
      */
     public function index()
     {
-        $receptions = Reception::findMany(['user_id' => User::Auth()]); //array
+        $receptions = Reception::find(['user_id' => User::Auth()]); //array
         if($receptions)
         {
             $result = [];
