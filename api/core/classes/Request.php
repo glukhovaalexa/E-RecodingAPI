@@ -6,7 +6,11 @@ use Api\Core\Classes\Validate;
 class Request{
 
     public $validate;
-
+    public const REQUIRED = 'required';
+    public const MIN = 'min';
+    public const MATCH = 'match';
+    public const NUM = 'num';
+    public const EMAIL_VALID = 'email_valid';
     /**
      * get path from url
      * 
