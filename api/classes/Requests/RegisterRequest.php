@@ -6,12 +6,6 @@ use Api\Core\Classes\Validate;
 
 class RegisterRequest extends Request{
 
-    public const REQUIRED = 'required';
-    public const MIN = 'min';
-    public const MATCH = 'match';
-    public const NUM = 'num';
-    public const EMAIL_VALID = 'email_valid';
-
     public function __construct()
     {
         //init Validate
@@ -31,7 +25,7 @@ class RegisterRequest extends Request{
             'lastname' => ['required', ['min', '3']],
             'phone' => ['required', 'num'],
             'email' => ['required', 'email_valid'],
-            'pass' => ['required', ['match', 'pass_rep']],
+            'pass' => ['required', ['min', '8'], ['match', 'pass_rep']],
         ];
     }
 }

@@ -4,10 +4,7 @@ namespace Api\Classes\Requests;
 use Api\Core\Classes\Request;
 use Api\Core\Classes\Validate;
 
-class RegisterRequest extends Request{
-
-    public const REQUIRED = 'required';
-    public const MIN = 'min';
+class LoginRequest extends Request{
 
     public function __construct()
     {
@@ -24,8 +21,8 @@ class RegisterRequest extends Request{
     {
         $parent = parent::rules();
         return [
-            'name' => ['required', ['min', '3']],
-            'lastname' => ['required', ['min', '3']],
+            'email' => ['required', 'email_valid'],
+            'pass' => ['required'],
         ];
     }
 }
