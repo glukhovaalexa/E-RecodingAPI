@@ -8,6 +8,9 @@ class RegisterRequest extends Request{
 
     public const REQUIRED = 'required';
     public const MIN = 'min';
+    public const MATCH = 'match';
+    public const NUM = 'num';
+    public const EMAIL_VALID = 'email_valid';
 
     public function __construct()
     {
@@ -26,6 +29,9 @@ class RegisterRequest extends Request{
         return [
             'name' => ['required', ['min', '3']],
             'lastname' => ['required', ['min', '3']],
+            'phone' => ['required', 'num'],
+            'email' => ['required', 'email_valid'],
+            'pass' => ['required', ['match', 'pass_rep']],
         ];
     }
 }
