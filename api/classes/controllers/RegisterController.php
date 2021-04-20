@@ -3,10 +3,14 @@
 namespace Api\Classes\Controllers;
 use Api\Classes\Controllers\Controller;
 use Api\Classes\Models\User;
+use Api\Classes\Models\City;
 use Api\Core\Classes\Request;
 use Api\Classes\Requests\RegisterRequest;
+use Api\Core\Traits\HashPassword;
 
 class RegisterController extends Controller{
+    
+    use HashPassword;
 
     public function __construct()
     {
@@ -23,7 +27,9 @@ class RegisterController extends Controller{
      */
     public function index()
     {
-        echo 'hi';
+        $cities = City::getAll();
+        echo $this->response->json($cities, 200);
+        return;
     }
 
     /**
@@ -37,13 +43,14 @@ class RegisterController extends Controller{
         // if not path validateion
         if(!empty($errors))
         {
-            $response = $this->response->json($errors, 400);
+            $response = $this->response->json($errors, 200);
             echo $response;
             return;
         }
-        
         // if data is valid
         $data = $this->request->input();
+        $data['pass'] = $this->hash($data['pass']);
+        unset($data['pass_rep']);
         $result = User::create($data);
         if($result)
         {
