@@ -48,7 +48,7 @@ class Model{
      * 
      * return array
      */
-    public static function findMany($data)
+    public static function find($data)
     {
         $db = Db::getInstance();
         $table = static::getTableName();
@@ -59,7 +59,7 @@ class Model{
             {
                 if(array_key_last($data) === $key)
                 {
-                    $sql .= "$key=$value";
+                    $sql .= "$key='$value'";
                 }
                 else{
                     $sql .= "$key=$value" . ' AND ';
