@@ -40,6 +40,9 @@ class RegisterController extends Controller{
     public function signup(Request $request)
     {
         $errors = $this->request->validate->errors;
+        ////chack unic + hash matchesmove to validate class! 
+        //controller dosn`t do validation!!
+        
         // if not path validateion
         if(!empty($errors))
         {
