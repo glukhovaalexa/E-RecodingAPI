@@ -25,11 +25,23 @@ class Validate {
                     {
                         $this->setError($attribute, $this->errors()[1]);
                     }
+                    if($rule[0] === $request::MATCH && $request->input($attribute) !== $request->input($rule[1]))
+                    {
+                        $this->setError($attribute, $this->errors()[4]);
+                    }
                 }
                 else{
                     if($rule === $request::REQUIRED && empty($request->input($attribute)))
                     {
                         $this->setError($attribute, $this->errors()[0]);
+                    }
+                    if($rule === $request::NUM && !is_numeric($request->input($attribute)))
+                    {
+                        $this->setError($attribute, $this->errors()[2]);
+                    }
+                    if($rule === $request::EMAIL_VALID && !filter_var($request->input($attribute), FILTER_VALIDATE_EMAIL))
+                    {
+                        $this->setError($attribute, $this->errors()[3]);
                     }
                 }
             }
@@ -45,7 +57,10 @@ class Validate {
     {
         return [
             0 => 'This field is required',
-            1 => 'This field need to be longer then',
+            1 => 'This field need to be longer then 3',
+            2 => 'This field shouldn`t have letters',
+            3 => 'Email isn`t valid',
+            4 => 'Passes don`t match',
         ];
     }
 }
