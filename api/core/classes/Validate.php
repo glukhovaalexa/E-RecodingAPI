@@ -23,7 +23,7 @@ class Validate {
                 {
                     if($rule[0] === $request::MIN && mb_strlen($request->input($attribute)) < $rule[1])
                     {
-                        $this->setError($attribute, $this->errors()[1]);
+                        $this->setError($attribute, $this->errors($rule[1])[1]);
                     }
                     if($rule[0] === $request::MATCH && $request->input($attribute) !== $request->input($rule[1]))
                     {
@@ -53,11 +53,11 @@ class Validate {
         $this->errors['errors'][$attribute] = $message;
     }
 
-    protected function errors()
+    protected function errors($var = '')
     {
         return [
             0 => 'This field is required',
-            1 => 'This field need to be longer then 3',
+            1 => "This field need to be longer then $var",
             2 => 'This field shouldn`t have letters',
             3 => 'Email isn`t valid',
             4 => 'Passes don`t match',
