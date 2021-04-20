@@ -8,9 +8,9 @@ class User extends Model{
     public string $lastname;
     public int $city_id;
     public string $phone;
-    protected string $email;
-    protected string $pass;
-    protected string $pass_rep;
+    public string $email;
+    public string $pass;
+    public string $pass_rep;
 
     /**
      * relationship
