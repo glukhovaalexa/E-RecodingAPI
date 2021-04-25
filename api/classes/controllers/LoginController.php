@@ -57,6 +57,8 @@ class LoginController extends Controller {
                 ], 200);
                 return;
             }
+            
+            $_SESSION['auth'] = $user[0]->id;
             $response = $this->response->json([
                 'status' => false,
                 'errors' => [
