@@ -57,6 +57,7 @@ class RegisterController extends Controller{
         $result = User::create($data);
         if($result)
         {
+            $_SESSION['auth'] = $data['id'];
             $response = $this->response->json($result, 201);
             echo $response;
         }else{
