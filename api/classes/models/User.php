@@ -22,13 +22,13 @@ class User extends Model{
         return $this->has(City::class, $this, 'city_id');
     }
 
-    /**
+        /**
      * auth user
      * 
      * !!!!!!!
      */
-    public static function Auth()
+    public static function auth()
     {
-        return 1;
+        return $_SESSION['auth'];
     }
 }
