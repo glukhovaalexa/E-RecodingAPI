@@ -51,4 +51,14 @@ class ProfileController extends Controller {
         }
 
     }
+
+    public function logout() 
+    {
+        $_SESSION['auth'] = '';
+        $response = $this->response->json([
+            'status' => true,
+            'message' => 'Logout'
+        ], 404);
+        echo $response;
+    }
 }
