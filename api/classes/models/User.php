@@ -22,7 +22,7 @@ class User extends Model{
         return $this->has(City::class, $this, 'city_id');
     }
 
-        /**
+    /**
      * auth user
      * 
      * !!!!!!!

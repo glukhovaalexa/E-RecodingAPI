@@ -23,7 +23,10 @@ class RegisterController extends Controller{
     }
 
     /**
+     * get request
+     * register form (get cities)
      * 
+     * return json
      */
     public function index()
     {

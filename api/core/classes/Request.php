@@ -13,6 +13,7 @@ class Request{
     public const EMAIL_VALID = 'email_valid';
     public const UNIQUE = 'unique';
     public const HASH_MATCH = 'hash_match';
+    
     /**
      * get path from url
      * 

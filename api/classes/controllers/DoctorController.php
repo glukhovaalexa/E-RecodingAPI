@@ -18,8 +18,8 @@ class DoctorController extends Controller {
         echo $response;
     }
 
-        /**
-     * get all doctors
+    /**
+     * get some doctors
      * 
      * return json
      */

@@ -97,7 +97,7 @@ class ReceptionController extends Controller {
     }
 
     /**
-     * delete receprion
+     * delete reception
      * 
      * return json
      */

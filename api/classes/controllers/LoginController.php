@@ -5,17 +5,15 @@ use Api\Classes\Controllers\Controller;
 use Api\Core\Classes\Request;
 use Api\Classes\Requests\LoginRequest;
 use Api\Classes\Models\User;
-use Api\Core\Traits\HashMatches;
 
 class LoginController extends Controller {
-
-    use HashMatches;
 
     public function __construct()
     {
         parent::__construct();
         if($this->request->postMethod())
         {
+            // request ruls for login
             $this->request = new LoginRequest();
         }
     }
@@ -35,14 +33,14 @@ class LoginController extends Controller {
     public function signin(Request $request)
     {
         $errors = $this->request->validate->errors;
-        // if not path validateion
+        // if didn`t path the validation
         if(!empty($errors))
         {
             $response = $this->response->json($errors, 200);
             echo $response;
             return;
         }
-        // if data is valida
+        // if data is valid
         $email = $this->request->input('email');
         $pass = $this->request->input('pass');
         $user = User::find(['email' => $email]);

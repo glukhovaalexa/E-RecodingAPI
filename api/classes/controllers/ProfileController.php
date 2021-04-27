@@ -52,6 +52,9 @@ class ProfileController extends Controller {
 
     }
 
+    /**
+     * ;ogout
+     */
     public function logout() 
     {
         unset($_SESSION['auth']);

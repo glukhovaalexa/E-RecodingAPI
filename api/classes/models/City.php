@@ -16,7 +16,7 @@ class City extends Model{
         return $this->belongsToMany(Hospital::class, $this, 'city_id');
     }
 
-    public function toArray()
+    public function related()
     {
         return [
             'id' => $this->id,
