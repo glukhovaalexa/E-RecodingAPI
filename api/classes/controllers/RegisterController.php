@@ -40,10 +40,7 @@ class RegisterController extends Controller{
     public function signup(Request $request)
     {
         $errors = $this->request->validate->errors;
-        ////chack unic + hash matchesmove to validate class! 
-        //controller dosn`t do validation!!
-        
-        // if not path validateion
+        // if not path validation
         if(!empty($errors))
         {
             $response = $this->response->json($errors, 200);
@@ -57,7 +54,7 @@ class RegisterController extends Controller{
         $result = User::create($data);
         if($result)
         {
-            $_SESSION['auth'] = $data['id'];
+            $_SESSION['auth'] = $result[0]['id'];
             $response = $this->response->json($result, 201);
             echo $response;
         }else{
