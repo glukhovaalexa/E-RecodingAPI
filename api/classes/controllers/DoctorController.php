@@ -18,6 +18,26 @@ class DoctorController extends Controller {
         echo $response;
     }
 
+        /**
+     * get all doctors
+     * 
+     * return json
+     */
+    public function someDoctors(Request $response, $city_id)
+    {
+        $doctors = Doctor::getMany('city_id', $city_id);
+        if($doctors)
+        {
+            $result = [];
+            foreach($doctors as $doctor)
+            {
+                $result[] = $doctor->related();
+            }
+        }
+        $response = $this->response->json($result, 200);
+        echo $response;
+    }
+
     /**
      * get one doctor
      * 
