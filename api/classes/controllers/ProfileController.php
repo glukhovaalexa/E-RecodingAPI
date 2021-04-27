@@ -54,7 +54,7 @@ class ProfileController extends Controller {
 
     public function logout() 
     {
-        $_SESSION['auth'] = '';
+        unset($_SESSION['auth']);
         $response = $this->response->json([
             'status' => true,
             'message' => 'Logout'
