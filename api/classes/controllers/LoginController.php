@@ -48,24 +48,12 @@ class LoginController extends Controller {
         $user = User::find(['email' => $email]);
         if(!empty($user))
         {
-            if($this->hashMatches($pass, $user[0]->pass)) 
-            {
-                echo $this->response->json([
-                    'status' => true,
-                    'message' => 'You are login',
-                    'user' => $user[0]
-                ], 200);
-                return;
-            }
-            
             $_SESSION['auth'] = $user[0]->id;
-            $response = $this->response->json([
-                'status' => false,
-                'errors' => [
-                    'message' =>  'Login or passqord isn`t correct!'
-                ]
+            echo $this->response->json([
+                'status' => true,
+                'message' => 'You are login',
+                'user' => $user[0]
             ], 200);
-            echo $response;
             return;
         }
 
