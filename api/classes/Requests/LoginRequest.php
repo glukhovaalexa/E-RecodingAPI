@@ -22,7 +22,7 @@ class LoginRequest extends Request{
         $parent = parent::rules();
         return [
             'email' => ['required', 'email_valid'],
-            'pass' => ['required'],
+            'pass' => ['required', ['hash_match', 'pass']],
         ];
     }
 }

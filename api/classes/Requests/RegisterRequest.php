@@ -24,7 +24,7 @@ class RegisterRequest extends Request{
             'name' => ['required', ['min', '3']],
             'lastname' => ['required', ['min', '3']],
             'phone' => ['required', 'num'],
-            'email' => ['required', 'email_valid'],
+            'email' => ['required', 'email_valid', 'unique'],
             'pass' => ['required', ['min', '8'], ['match', 'pass_rep']],
         ];
     }
