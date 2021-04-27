@@ -33,9 +33,18 @@ class Validate {
                     {
                         $this->setError($attribute, $this->errors()[4]);
                     }
-                    if($rule[0] === $request::HASH_MATCH &&  !$this->hashMatches($request->input($attribute), User::find(['email' => $request->input('email')])[0]->pass))
+                    if($rule[0] === $request::HASH_MATCH)
                     {
+                        $user = User::find(['email' => $request->input('email')]);
+                        if(empty($user))
+                        {
+                            $this->setError($attribute, $this->errors()[7]);
+
+                        }
+                        if($user && !$this->hashMatches($request->input($attribute), $user[0]->pass)) {
                         $this->setError($attribute, $this->errors()[6]);
+
+                        }
                     }
                 }
                 else{
@@ -75,6 +84,7 @@ class Validate {
             4 => 'Passes don`t match',
             5 => "Field $var isn`t unique",
             6 => "Login or passqord isn`t correct!",
+            7 => "User not found, please sign up!",
         ];
     }
 }

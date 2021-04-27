@@ -5,8 +5,11 @@ use Api\Classes\Controllers\Controller;
 use Api\Core\Classes\Request;
 use Api\Classes\Requests\LoginRequest;
 use Api\Classes\Models\User;
+use Api\Core\Traits\HashMatches;
 
 class LoginController extends Controller {
+
+    use HashMatches;
 
     public function __construct()
     {
@@ -44,23 +47,11 @@ class LoginController extends Controller {
         $email = $this->request->input('email');
         $pass = $this->request->input('pass');
         $user = User::find(['email' => $email]);
-        if(!empty($user))
-        {
-            $_SESSION['auth'] = $user[0]->id;
-            echo $this->response->json([
-                'status' => true,
-                'message' => 'You are login',
-                'user' => $user[0]
-            ], 200);
-            return;
-        }
-
         echo $this->response->json([
-            'errors' => [
-                'message' => 'User not found, please sign up!'
-            ] 
+            'status' => true,
+            'message' => 'You are login',
+            'user' => $user[0]
         ], 200);
         return;
-
     }
 }
