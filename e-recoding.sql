@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 08 2021 г., 20:39
+-- Время создания: Апр 27 2021 г., 21:16
 -- Версия сервера: 10.4.18-MariaDB
 -- Версия PHP: 8.0.3
 
@@ -38,7 +38,9 @@ CREATE TABLE `cities` (
 
 INSERT INTO `cities` (`id`, `name`) VALUES
 (1, 'Sumy'),
-(2, 'Khmelnitskyi');
+(2, 'Khmelnitskiy'),
+(3, 'Lviv'),
+(4, 'Kharkiv');
 
 -- --------------------------------------------------------
 
@@ -53,17 +55,33 @@ CREATE TABLE `doctors` (
   `speciality_id` int(10) UNSIGNED NOT NULL COMMENT 'Fk',
   `hospital_id` int(10) UNSIGNED NOT NULL COMMENT 'Fk',
   `city_id` int(10) UNSIGNED NOT NULL COMMENT 'Fk',
-  `roomNamber` int(10) UNSIGNED NOT NULL
+  `roomNumber` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `doctors`
 --
 
-INSERT INTO `doctors` (`id`, `name`, `lastname`, `speciality_id`, `hospital_id`, `city_id`, `roomNamber`) VALUES
+INSERT INTO `doctors` (`id`, `name`, `lastname`, `speciality_id`, `hospital_id`, `city_id`, `roomNumber`) VALUES
 (1, 'Olga', 'Petrenko', 1, 2, 2, 10),
 (2, 'Ivan', 'Nesterenko', 2, 1, 1, 11),
-(3, 'Alisa', 'Mavz', 1, 1, 1, 15);
+(3, 'Alisa', 'Mavz', 1, 3, 3, 15),
+(4, 'Lina', 'Kostenko', 3, 4, 4, 3),
+(5, 'Valentina', 'Todorenko', 1, 1, 1, 29),
+(6, 'Lina', 'Kostenko', 3, 4, 4, 3),
+(7, 'Valentina', 'Petrenko', 1, 1, 1, 5),
+(8, 'Margaret', 'Tetcher', 2, 2, 2, 57),
+(9, 'Igor', 'Martenko', 3, 3, 3, 61),
+(10, 'Petro', 'Nesterenko', 2, 2, 2, 46),
+(11, 'Valentin', 'Ostrovskiy', 3, 3, 3, 74),
+(12, 'Maks', 'Bevz', 2, 4, 4, 105),
+(13, 'Oleksandra', 'Fedina', 3, 4, 4, 68),
+(14, 'Mark', 'Emelianov', 2, 4, 4, 73),
+(15, 'Oleksandr', 'Shufer', 3, 4, 4, 17),
+(16, 'Katerina', 'Vasilenko', 3, 1, 1, 95),
+(17, 'Katerina', 'Shevchenko', 1, 4, 4, 0),
+(18, 'Gerashcenko', 'Anton', 3, 1, 1, 40),
+(19, 'Irina', 'Martenko', 1, 4, 4, 45);
 
 -- --------------------------------------------------------
 
@@ -82,10 +100,10 @@ CREATE TABLE `hospitals` (
 --
 
 INSERT INTO `hospitals` (`id`, `name`, `city_id`) VALUES
-(1, 'Міська клінічна лікарня Sumy1111', 1),
-(2, 'Міська клінічна лікарня Хм', 2),
-(3, 'Міська клінічна лікарня Хм2222', 2),
-(4, 'Міська клінічна лікарня Sumy2222', 1);
+(1, 'Міська клінічна лікарня м.Суми', 1),
+(2, 'Обласна лікарня м.Хмельницький', 2),
+(3, 'Лабораторія м.Львів', 3),
+(4, 'Міська клінічна лікарня м.Харків', 4);
 
 -- --------------------------------------------------------
 
@@ -97,17 +115,8 @@ CREATE TABLE `receptions` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'Pk',
   `user_id` int(10) UNSIGNED NOT NULL COMMENT 'Fk',
   `doctor_id` int(10) UNSIGNED NOT NULL COMMENT 'Fk',
-  `date` date NOT NULL
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `receptions`
---
-
-INSERT INTO `receptions` (`id`, `user_id`, `doctor_id`, `date`) VALUES
-(4, 1, 1, '2021-05-10'),
-(5, 1, 1, '2021-05-10'),
-(6, 1, 1, '2021-05-10');
 
 -- --------------------------------------------------------
 
@@ -143,17 +152,8 @@ CREATE TABLE `users` (
   `city_id` int(10) UNSIGNED NOT NULL COMMENT 'Fk',
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pass_rep` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `pass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`id`, `name`, `lastname`, `city_id`, `phone`, `email`, `pass`, `pass_rep`) VALUES
-(1, 'Alexa', 'Glu', 1, '', '', '123', '123'),
-(2, 'Alexa', 'Ala', 2, '', '', '111', '111');
 
 --
 -- Индексы сохранённых таблиц
@@ -210,13 +210,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Pk', AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Pk', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Pk', AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Pk', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `hospitals`
@@ -228,7 +228,7 @@ ALTER TABLE `hospitals`
 -- AUTO_INCREMENT для таблицы `receptions`
 --
 ALTER TABLE `receptions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Pk', AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Pk', AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT для таблицы `specialities`
@@ -240,7 +240,7 @@ ALTER TABLE `specialities`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Pk', AUTO_INCREMENT=109;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Pk', AUTO_INCREMENT=130;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
