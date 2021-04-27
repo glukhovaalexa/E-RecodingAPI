@@ -14,10 +14,11 @@ Router::post('/profile', 'Api\Classes\Controllers\ProfileController@search');
 Router::post('/logout', 'Api\Classes\Controllers\ProfileController@logout');
 
 Router::get('/doctors', 'Api\Classes\Controllers\DoctorController@index');
+Router::get('/doctors/{id}', 'Api\Classes\Controllers\DoctorController@someDoctors');
 Router::get('/doctor/{id}', 'Api\Classes\Controllers\DoctorController@show');
 
 ///crud operations
-Router::get('/receptions', 'Api\Classes\Controllers\ReceptionController@index');
+Router::get('/receptions/{id}', 'Api\Classes\Controllers\ReceptionController@index');
 Router::post('/reception', 'Api\Classes\Controllers\ReceptionController@store');
 Router::get('/reception/{id}', 'Api\Classes\Controllers\ReceptionController@show');
 Router::put('/reception/{id}', 'Api\Classes\Controllers\ReceptionController@edit');
