@@ -39,7 +39,7 @@ class Reception extends Model{
             'doctor_id' => $this->doctor_id,
             'date' => $this->date,
             'user' => $this->user(),
-            'doctor' => $this->doctor(),
+            'doctor' => $this->doctor()->related(),
         ];
 
     }
