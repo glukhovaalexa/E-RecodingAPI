@@ -12,9 +12,9 @@ class ReceptionController extends Controller {
      * 
      * return json
      */
-    public function index()
+    public function index(Request $request, $id)
     {
-        $receptions = Reception::find(['user_id' => User::auth()]); //array
+        $receptions = Reception::find(['user_id' => $id]); //array
         if($receptions)
         {
             $result = [];
